@@ -3,6 +3,11 @@ set relativenumber             " Show relative line numbers
 
 inoremap jk <ESC>
 
+nnoremap <C-q> :call ToggleQFList(1)<CR>
+nnoremap <C-k> :cnext<CR>zz
+nnoremap <C-j> :cprev<CR>zz
+
+
 let mapleader = "'"
 
 set noswapfile " disable the swapfile
