@@ -7,6 +7,28 @@ nnoremap <C-q> :call ToggleQFList(1)<CR>
 nnoremap <C-k> :cnext<CR>zz
 nnoremap <C-j> :cprev<CR>zz
 
+let g:the_primeagen_qf_l = 0
+let g:the_primeagen_qf_g = 0
+
+fun! ToggleQFList(global)
+    if a:global
+        if g:the_primeagen_qf_g == 1
+            let g:the_primeagen_qf_g = 0
+            cclose
+        else
+            let g:the_primeagen_qf_g = 1
+            copen
+        end
+    else
+        if g:the_primeagen_qf_l == 1
+            let g:the_primeagen_qf_l = 0
+            lclose
+        else
+            let g:the_primeagen_qf_l = 1
+            lopen
+        end
+    endif
+endfun
 
 let mapleader = "'"
 
@@ -56,6 +78,8 @@ Plug 'prettier/vim-prettier', {
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html', 'typescriptreact', 'javascriptreact'] }
 "Plug 'ctrlpvim/ctrlp.vim'
 
+" Automatically close HTML/XML tags.
+Plug 'alvan/vim-closetag'
 
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -152,9 +176,9 @@ nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<cr>
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.bufimplementation()<CR>
+nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-space> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
@@ -174,4 +198,3 @@ set shortmess+=c
 
 
 set nohlsearch
-.
